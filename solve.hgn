@@ -1,0 +1,133 @@
+#! /bin/sh
+exec huginn -E "${0}" "${@}"
+#! huginn
+
+import Algorithms as algo;
+import Mathematics as math;
+import OperatingSystem as os;
+import FileSystem as fs;
+
+class DictionaryNode {
+	_finished = false;
+	_next = lookup();
+
+	add_suffix( suffix_ ) {
+		if ( size( suffix_ ) == 0 ) {
+			_finished = true;
+		} else {
+			char = suffix_[0];
+			if ( ! _next.has_key( char ) ) {
+				_next[char] = DictionaryNode();
+			}
+			_next[char].add_suffix( suffix_[1:] );
+		}
+	}
+
+	get( char_ ) {
+		return ( _next.get( char_, none ) );
+	}
+
+	print_all( prefix_ = "" ) {
+		if ( _finished ) {
+			print( prefix_ );
+		}
+		for ( char : _next ) {
+			_next[char].print_all( prefix_ + char );
+		}
+	}
+}
+
+class Cube {
+	_letter = none;
+	_visited = false;
+	_neighbors = [];
+	constructor( letter_ ) {
+		_letter = letter_;
+	}
+}
+
+class Board {
+	_cubes = none;
+	_size = 0;
+	constructor( letters_ ) {
+		len = integer( math.square_root( real( size( letters_ ) ) ) );
+		assert( len * len == size( letters_ ) );
+		_size = len;
+		_cubes = [];
+		for ( l : letters_ ) {
+			_cubes.add( Cube( l ) );
+		}
+		deltas = [[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]];
+		for ( x : algo.range( len ) ) {
+			for ( y : algo.range( len ) ) {
+				for ( d : deltas ) {
+					nx = x + d[0];
+					ny = y + d[1];
+					if ( ( nx >= 0 ) && ( nx < len ) && ( ny >= 0 ) && ( ny < len ) ) {
+						get_cube( x, y )._neighbors.add( copy( get_cube( nx, ny ) ) );
+					}
+				}
+			}
+		}
+	}
+
+	get_cube( x_, y_ ) {
+		return ( _cubes[y_ * _size + x_] );
+	}
+
+	solve( dictionary_ ) {
+		result = set();
+		for ( cube : _cubes ) {
+			solve_recursive( result, "", cube, dictionary_ );
+		}
+		return ( algo.sorted( result, size ) );
+	}
+
+	solve_recursive( result, prefix_, cube_, dictNode_ ) {
+		nextNode = dictNode_.get( cube_._letter );
+		if ( nextNode == none ) {
+			return;
+		}
+		cube_._visited = true;
+		newPrefix = prefix_ + string( cube_._letter );
+		if ( nextNode._finished && ( size( newPrefix ) >= 3 ) ) {
+			result.add( newPrefix );
+		}
+		for ( neighbor : cube_._neighbors ) {
+			if ( ! neighbor._visited ) {
+				solve_recursive( result, newPrefix, neighbor, nextNode );
+			}
+		}
+		cube_._visited = false;
+	}
+}
+
+main( argv ) {
+	dictionaryRoot = DictionaryNode();
+	dictFile = fs.open( argv[1], fs.reading() );
+	for ( line : dictFile ) {
+		dictionaryRoot.add_suffix( line.strip() );
+	}
+	print( "[ OK ] Ready\n" );
+	letters = "";
+	while ( true ) {
+		line = input();
+		if ( size( line ) == 0 ) {
+			break;
+		}
+		line = line.strip();
+		if ( ( size( letters ) > 0 ) && ( size( line ) == 0 ) ) {
+			print( "[ OK ] Solving\n" );
+			board = Board( letters );
+			for ( word : board.solve( dictionaryRoot ) ) {
+				print( "(" + string( size( word ) ) + ") " + word + "\n" );
+			}
+			print( "[ OK ] Solved\n" );
+			letters = "";
+		} else {
+			letters = letters + line;
+		}
+	}
+	return ( 0 );
+}
+
