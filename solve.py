@@ -1,5 +1,9 @@
 #!/usr/bin/python2
 
+# Credits:
+# Algorithm design and implementation by
+# Marcin Sulikowski (@marcinsulikowski)
+
 from __future__ import print_function
 from __future__ import division
 import codecs
