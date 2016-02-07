@@ -97,16 +97,13 @@ public:
 		if (c == '\0') {
 			isWordFinished_ = true;
 		} else {
-			if (next_[c] == nullptr) {
-				next_[c] = new DictionaryNode();
-			}
-			next_[c]->addSuffix(suffix + 1);
+			next_[c].addSuffix(suffix + 1);
 		}
 	}
 
 	DictionaryNode const* get(char c) const {
 		auto it = next_.find(c);
-		return (it == next_.end() ? nullptr : it->second);
+		return (it == next_.end() ? nullptr : &(it->second));
 	}
 
 	bool isWordFinished() const {
@@ -115,7 +112,7 @@ public:
 
 private:
 	bool isWordFinished_;
-	sparse_map<char, DictionaryNode*> next_;
+	sparse_map<char, DictionaryNode> next_;
 };
 
 class Board {
