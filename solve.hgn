@@ -28,10 +28,10 @@ class DictionaryNode {
 
 	print_all( prefix_ = "" ) {
 		if ( _finished ) {
-			print( prefix_ );
+			print( prefix_ + "\n" );
 		}
 		for ( char : _next ) {
-			_next[char].print_all( prefix_ + char );
+			_next[char].print_all( prefix_ + string( char ) );
 		}
 	}
 }
@@ -107,6 +107,7 @@ main( argv ) {
 	for ( line : dictFile ) {
 		dictionaryRoot.add_suffix( line.strip() );
 	}
+//	dictionaryRoot.print_all();
 	print( "[ OK ] Ready\n" );
 	letters = "";
 	while ( true ) {
