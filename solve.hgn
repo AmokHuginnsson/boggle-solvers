@@ -4,7 +4,6 @@ exec huginn -E "${0}" "${@}"
 
 import Algorithms as algo;
 import Mathematics as math;
-import OperatingSystem as os;
 import FileSystem as fs;
 
 class DictionaryNode {
