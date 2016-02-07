@@ -157,3 +157,4 @@ public class solve {
 	}
 }
 
+/* vim: set ft=java: */

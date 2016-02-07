@@ -131,3 +131,4 @@ main( argv ) {
 	return ( 0 );
 }
 
+/* vim: set ft=huginn: */

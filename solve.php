@@ -142,5 +142,5 @@ function main( $argv ) {
 
 main( $argv );
 
+/* vim: set ft=php: */
 ?>
-

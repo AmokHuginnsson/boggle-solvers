@@ -1,0 +1,11 @@
+*.cpp linguist-language=C++
+*.cxx linguist-language=C++
+*.go linguist-language=Go
+*.hgn linguist-language=Huginn
+*.java linguist-language=Java
+*.js linguist-language=JavaScript
+*.php linguist-language=PHP
+*.pl linguist-language=Perl
+*.py linguist-language=Python
+*.rb linguist-language=Ruby
+
