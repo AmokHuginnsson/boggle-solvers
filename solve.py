@@ -110,4 +110,4 @@ def main():
 if __name__ == '__main__':
 	main()
 
-# vim: ft=python
+# vim: set ft=python:

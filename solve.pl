@@ -155,4 +155,4 @@ sub main( @argv_ ) {
 
 main( (($0), @ARGV ) );
 
-# vim: ft=perl
+# vim: set ft=perl:
