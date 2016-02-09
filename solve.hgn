@@ -50,7 +50,9 @@ class Board {
 	_size = 0;
 	constructor( letters_ ) {
 		len = integer( math.square_root( real( size( letters_ ) ) ) );
-		assert( len * len == size( letters_ ) );
+		if ( len * len != size( letters_ ) ) {
+			throw Exception( "Bad board definition!" );
+		}
 		_size = len;
 		_cubes = [];
 		for ( l : letters_ ) {
@@ -63,7 +65,7 @@ class Board {
 					nx = x + d[0];
 					ny = y + d[1];
 					if ( ( nx >= 0 ) && ( nx < len ) && ( ny >= 0 ) && ( ny < len ) ) {
-						get_cube( x, y )._neighbors.add( copy( get_cube( nx, ny ) ) );
+						get_cube( x, y )._neighbors.add( observe( get_cube( nx, ny ) ) );
 					}
 				}
 			}
@@ -92,7 +94,8 @@ class Board {
 		if ( nextNode._finished && ( size( newPrefix ) >= 3 ) ) {
 			result.add( newPrefix );
 		}
-		for ( neighbor : cube_._neighbors ) {
+		for ( n : cube_._neighbors ) {
+			neighbor = use( n );
 			if ( ! neighbor._visited ) {
 				solve_recursive( result, newPrefix, neighbor, nextNode );
 			}
@@ -118,11 +121,15 @@ main( argv ) {
 		line = line.strip();
 		if ( ( size( letters ) > 0 ) && ( size( line ) == 0 ) ) {
 			print( "[ OK ] Solving\n" );
-			board = Board( letters );
-			for ( word : board.solve( dictionaryRoot ) ) {
-				print( "(" + string( size( word ) ) + ") " + word + "\n" );
+			try {
+				board = Board( letters );
+				for ( word : board.solve( dictionaryRoot ) ) {
+					print( "(" + string( size( word ) ) + ") " + word + "\n" );
+				}
+				print( "[ OK ] Solved\n" );
+			} catch ( Exception e ) {
+				print( e.message() + "\n" );
 			}
-			print( "[ OK ] Solved\n" );
 			letters = "";
 		} else {
 			letters = letters + line;
