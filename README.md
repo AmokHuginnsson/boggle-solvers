@@ -25,6 +25,7 @@ All tests runs were performed with tcmalloc preloaded
 | Perl       |          69.46 |      1801748 | 5.22.1                    |
 | PHP        |          78.24 |      1487980 | 7.0                       |
 | Python     |          21.91 |      1674480 | 3.5.1                     |
+| Ruby       |          16.30 |      1282492 | 2.2.4                     |
 
 Dictionary loaded contains 2709883 words, with 30504772 characters in total.
 
