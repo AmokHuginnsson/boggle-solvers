@@ -108,22 +108,18 @@ end
 def main( argv_ )
 	dictionaryRoot = DictionaryNode.new
 	File.open( argv_[1] ).each do | line |
-		dictionaryRoot.add_suffix( line )
+		dictionaryRoot.add_suffix( line.strip() )
 	end
 #	dictionaryRoot.print_all
 	puts( "[ OK ] Ready" )
-	letters = "";
-	while ( true )
-		line = STDIN.gets()
-		if ( line == nil )
-			break
-		end
+	letters = ""
+	while ( ( line = STDIN.gets() ) != nil )
 		line = line.strip()
 		if ( ( letters.length > 0 ) && ( line.length == 0 ) )
 			puts( "[ OK ] Solving" )
 			board = Board.new( letters )
 			board.solve( dictionaryRoot ).each do | word |
-				puts( "(" + word.length + ") " + word )
+				puts( "(" + word.length.to_s + ") " + word )
 			end
 			puts( "[ OK ] Solved" )
 			letters = ""
