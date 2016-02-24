@@ -1,5 +1,5 @@
 #! /bin/sh
-exec huginn -E "${0}" "${@}"
+exec huginn --rapid-start -E "${0}" "${@}"
 #! huginn
 
 import Algorithms as algo;

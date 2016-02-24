@@ -4,6 +4,7 @@
 *.hgn linguist-language=Huginn
 *.java linguist-language=Java
 *.js linguist-language=JavaScript
+*.lua linguist-language=Lua
 *.php linguist-language=PHP
 *.pl linguist-language=Perl
 *.py linguist-language=Python
