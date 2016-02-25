@@ -58,7 +58,7 @@ class Board {
 		for ( l : letters_ ) {
 			_cubes.add( Cube( l ) );
 		}
-		deltas = [[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]];
+		deltas = [ [ -1, -1 ], [ -1, 0 ], [ -1, 1 ], [ 0, -1 ], [ 0, 1 ], [ 1, -1 ], [ 1, 0 ], [ 1, 1 ] ];
 		for ( x : algo.range( len ) ) {
 			for ( y : algo.range( len ) ) {
 				for ( d : deltas ) {
@@ -104,9 +104,9 @@ class Board {
 	}
 }
 
-main( argv ) {
+main( argv_ ) {
 	dictionaryRoot = DictionaryNode();
-	dictFile = fs.open( argv[1], fs.reading() );
+	dictFile = fs.open( argv_[1], fs.reading() );
 	for ( line : dictFile ) {
 		dictionaryRoot.add_suffix( line.strip() );
 	}
@@ -132,7 +132,7 @@ main( argv ) {
 			}
 			letters = "";
 		} else {
-			letters = letters + line;
+			letters += line;
 		}
 	}
 	return ( 0 );
