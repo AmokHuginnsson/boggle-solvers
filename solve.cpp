@@ -10,6 +10,7 @@
 #include <iostream>
 #include <map>
 #include <unordered_map>
+#include <memory>
 #include <set>
 #include <sstream>
 #include <vector>
@@ -97,13 +98,16 @@ public:
 		if (c == '\0') {
 			isWordFinished_ = true;
 		} else {
-			next_[c].addSuffix(suffix + 1);
+			if (next_.find(c) == next_.end()) {
+				next_[c].reset(new DictionaryNode());
+			}
+			next_[c]->addSuffix(suffix + 1);
 		}
 	}
 
 	DictionaryNode const* get(char c) const {
 		auto it = next_.find(c);
-		return (it == next_.end() ? nullptr : &(it->second));
+		return (it == next_.end() ? nullptr : it->second.get());
 	}
 
 	bool isWordFinished() const {
@@ -112,7 +116,7 @@ public:
 
 private:
 	bool isWordFinished_;
-	sparse_map<char, DictionaryNode> next_;
+	std::unordered_map<char, std::unique_ptr<DictionaryNode>> next_;
 };
 
 class Board {
