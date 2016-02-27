@@ -1,5 +1,7 @@
 #include <yaal/hcore/harray.hxx>
 #include <yaal/hcore/hmap.hxx>
+#include <yaal/hcore/hhashmap.hxx>
+#include <yaal/hcore/math.hxx>
 #include <yaal/hcore/hset.hxx>
 #include <yaal/hcore/hstring.hxx>
 #include <yaal/hcore/hfile.hxx>
@@ -11,7 +13,7 @@ using namespace yaal::tools;
 
 class DictionaryNode {
 public:
-	typedef HMap<char, DictionaryNode> tails_t;
+	typedef HHashMap<char, DictionaryNode> tails_t;
 private:
 	bool _isWordFinished;
 	tails_t _next;
@@ -21,7 +23,7 @@ public:
 		, _next() {
 	}
 
-	void addSuffix(const char* suffix) {
+	void addSuffix( char const* suffix ) {
 		char c = *suffix;
 		if (c == '\0') {
 			_isWordFinished = true;
@@ -69,7 +71,7 @@ public:
 				_cubes.emplace_back(letter);
 			}
 		}
-		_size = square_root( _cubes.size() );
+		_size = math::square_root( _cubes.size() );
 		if (_size * _size != (int)_cubes.size()) {
 			throw std::runtime_error("board is not a square");
 		}
