@@ -1,5 +1,6 @@
 *.cpp linguist-language=C++
 *.cxx linguist-language=C++
+*.cs  linguist-language=csharp
 *.go linguist-language=Go
 *.hgn linguist-language=Huginn
 *.java linguist-language=Java

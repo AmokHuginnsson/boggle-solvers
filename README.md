@@ -19,6 +19,7 @@ All tests runs were performed with tcmalloc preloaded
 | Language   | Time (seconds) | Memory (KiB) | Run-time/Compiler version |
 |------------|---------------:|-------------:|---------------------------|
 | C++        |           1.36 |       501080 | GCC 5.3.1                 |
+| C#         |           5.30 |       983968 | 4.2.1.0                   |
 | Go         |           2.99 |       548948 | go1.6rc                   |
 | Huginn     |          63.67 |      2923160 | (HEAD)                    |
 | Java       |           2.90 |      1265092 | Oracle Java 1.7.0         |
