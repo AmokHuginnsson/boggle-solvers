@@ -113,11 +113,7 @@ main( argv_ ) {
 //	dictionaryRoot.print_all();
 	print( "[ OK ] Ready\n" );
 	letters = "";
-	while ( true ) {
-		line = input();
-		if ( size( line ) == 0 ) {
-			break;
-		}
+	while ( ( line = input() ) != none ) {
 		line = line.strip();
 		if ( ( size( letters ) > 0 ) && ( size( line ) == 0 ) ) {
 			print( "[ OK ] Solving\n" );
