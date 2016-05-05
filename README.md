@@ -21,7 +21,7 @@ All tests runs were performed with tcmalloc preloaded
 | C++        |           1.36 |       501080 | GCC 5.3.1                 |
 | C#         |           5.30 |       983968 | 4.2.1.0                   |
 | Go         |           2.99 |       548948 | go1.6rc                   |
-| Huginn     |          56.32 |      2925148 | (HEAD)                    |
+| Huginn     |          53.00 |      2924728 | (HEAD)                    |
 | Java       |           2.90 |      1265092 | Oracle Java 1.7.0         |
 | JavaScript |           5.97 |       492272 | NodeJS 4.2.6              |
 | Lua        |          20.60 |      1364400 | 5.2.4                     |
