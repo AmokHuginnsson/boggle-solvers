@@ -8,7 +8,7 @@ in given language.
 
 The problem that is being solved by test programs
 is building a *trie* (a prefix tree) for Polish language
-dictionary.
+dictionary \([gz](http://codestation.org/download/slowa.txt.gz), [bz2](http://codestation.org/download/slowa.txt.bz2)\).
 
 Most implementations use their respective hash-maps
 to link prefixes with tails.
