@@ -56,7 +56,7 @@ class Board {
 		_size = len;
 		_cubes = [];
 		for ( l : letters_ ) {
-			_cubes.add( Cube( l ) );
+			_cubes.push( Cube( l ) );
 		}
 		deltas = [ [ -1, -1 ], [ -1, 0 ], [ -1, 1 ], [ 0, -1 ], [ 0, 1 ], [ 1, -1 ], [ 1, 0 ], [ 1, 1 ] ];
 		for ( x : algo.range( len ) ) {
@@ -65,7 +65,7 @@ class Board {
 					nx = x + d[0];
 					ny = y + d[1];
 					if ( ( nx >= 0 ) && ( nx < len ) && ( ny >= 0 ) && ( ny < len ) ) {
-						get_cube( x, y )._neighbors.add( observe( get_cube( nx, ny ) ) );
+						get_cube( x, y )._neighbors.push( observe( get_cube( nx, ny ) ) );
 					}
 				}
 			}
@@ -92,7 +92,7 @@ class Board {
 		cube_._visited = true;
 		newPrefix = prefix_ + string( cube_._letter );
 		if ( nextNode._finished && ( size( newPrefix ) >= 3 ) ) {
-			result.add( newPrefix );
+			result.insert( newPrefix );
 		}
 		for ( n : cube_._neighbors ) {
 			neighbor = use( n );
