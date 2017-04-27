@@ -4,6 +4,7 @@
 *.go linguist-language=Go
 *.hgn linguist-language=Huginn
 *.java linguist-language=Java
+*.jl linguist-language=Julia
 *.js linguist-language=JavaScript
 *.lua linguist-language=Lua
 *.php linguist-language=PHP

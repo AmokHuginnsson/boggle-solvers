@@ -24,6 +24,7 @@ All tests runs were performed with tcmalloc preloaded
 | [Huginn](http://codestation.org/?h-action=menu-project&menu=submenu-project&page=&project=huginn) | 49.85 | 2925180 | (HEAD) |
 | Java       |           2.90 |      1265092 | Oracle Java 1.7.0         |
 | JavaScript |           5.97 |       492272 | NodeJS 4.2.6              |
+| Julia      |          11.10 |      3341924 | 0.4.7                     |
 | Lua        |          20.60 |      1364400 | 5.2.4                     |
 | Perl       |          69.46 |      1801748 | 5.22.1                    |
 | PHP        |          78.24 |      1487980 | 7.0                       |
