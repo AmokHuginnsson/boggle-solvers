@@ -1,16 +1,13 @@
-#!/usr/bin/python2
+#! /usr/bin/python3
 
 # Credits:
 # Algorithm design and implementation by
 # Marcin Sulikowski (@marcinsulikowski)
 
-from __future__ import print_function
-from __future__ import division
 import codecs
 import math
 import sys
 import traceback
-
 
 class DictionaryNode(object):
 	__slots__ = ['finished', '_next']
@@ -83,10 +80,10 @@ class Board(object):
 
 def main():
 	dictionary_root = DictionaryNode()
-	with codecs.open(sys.argv[1], encoding="latin2") as dict_file:
+	with codecs.open( sys.argv[1], encoding="utf8" ) as dict_file:
 		for line in dict_file:
-			dictionary_root.add_suffix(line.strip())
-	print('[ OK ] Ready', file=sys.stderr)
+			dictionary_root.add_suffix( line.strip() )
+	print( '[ OK ] Ready', file=sys.stderr )
 	letters = ''
 	while True:
 		line = sys.stdin.readline()
@@ -105,7 +102,6 @@ def main():
 			letters = ''
 		else:
 			letters = letters + line
-
 
 if __name__ == '__main__':
 	main()
