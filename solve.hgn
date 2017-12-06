@@ -58,7 +58,7 @@ class Board {
 		for ( l : letters_ ) {
 			_cubes.push( Cube( l ) );
 		}
-		deltas = [ [ -1, -1 ], [ -1, 0 ], [ -1, 1 ], [ 0, -1 ], [ 0, 1 ], [ 1, -1 ], [ 1, 0 ], [ 1, 1 ] ];
+		deltas = [ ( -1, -1 ), ( -1, 0 ), ( -1, 1 ), ( 0, -1 ), ( 0, 1 ), ( 1, -1 ), ( 1, 0 ), ( 1, 1 ) ];
 		for ( x : algo.range( len ) ) {
 			for ( y : algo.range( len ) ) {
 				for ( d : deltas ) {
