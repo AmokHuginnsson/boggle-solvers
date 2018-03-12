@@ -109,7 +109,7 @@ class Board {
 
 main( argv_ ) {
 	dictionaryRoot = DictionaryNode();
-	dictFile = fs.open( argv_[1], fs.reading() );
+	dictFile = fs.open( argv_[1], fs.OPEN_MODE.READ );
 	for ( line : dictFile ) {
 		dictionaryRoot.add_suffix( line.strip() );
 	}
