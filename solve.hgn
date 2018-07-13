@@ -15,7 +15,7 @@ class DictionaryNode {
 			_finished = true;
 		} else {
 			char = suffix_[0];
-			if ( ! _next.has_key( char ) ) {
+			if ( char ∉ _next ) {
 				_next[char] = DictionaryNode();
 			}
 			_next[char].add_suffix( suffix_[1:] );

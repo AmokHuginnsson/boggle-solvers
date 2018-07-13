@@ -21,7 +21,7 @@ class DictionaryNode(object):
 			self.finished = True
 		else:
 			char = suffix[0]
-			if not char in self._next:
+			if char not in self._next:
 				self._next[char] = DictionaryNode()
 			self._next[char].add_suffix(suffix[1:])
 
