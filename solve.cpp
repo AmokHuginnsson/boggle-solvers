@@ -14,6 +14,7 @@
 #include <set>
 #include <sstream>
 #include <vector>
+#include <cmath>
 
 template <typename K, typename V>
 class sparse_map {
