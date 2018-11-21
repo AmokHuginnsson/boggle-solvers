@@ -13,7 +13,7 @@ using namespace yaal::tools;
 
 class DictionaryNode {
 public:
-	typedef HHashMap<char, DictionaryNode> tails_t;
+	typedef HHashMap<code_point_t, DictionaryNode> tails_t;
 private:
 	bool _isWordFinished;
 	tails_t _next;
@@ -23,17 +23,16 @@ public:
 		, _next() {
 	}
 
-	void addSuffix( char const* suffix ) {
-		char c = *suffix;
-		if (c == '\0') {
+	void addSuffix( yaal::hcore::HString const& suffix, int start = 0 ) {
+		if ( start >= suffix.get_length() ) {
 			_isWordFinished = true;
 		} else {
-			_next[c].addSuffix(suffix + 1);
+			_next[suffix[start]].addSuffix( suffix, start + 1 );
 		}
 		return;
 	}
 
-	DictionaryNode const* get( char c ) const {
+	DictionaryNode const* get( code_point_t c ) const {
 		tails_t::const_iterator it( _next.find( c ) );
 		return ( it != _next.end() ? &(it->second) : nullptr );
 	}
@@ -46,10 +45,10 @@ public:
 class Board {
 	struct Cube {
 		typedef yaal::hcore::HArray<Cube const*> neighbors_t;
-		const char _letter;
+		const yaal::code_point_t _letter;
 		neighbors_t _neighbors;
 		mutable bool _visited;
-		Cube( char letter_ )
+		Cube( code_point_t letter_ )
 			: _letter( letter_ )
 			, _neighbors()
 			, _visited( false ) {
@@ -66,9 +65,9 @@ public:
 	Board( yaal::hcore::HString const& board )
 		: _size( 0 )
 		, _cubes() {
-		for (char letter : board) {
-			if (letter != '\n') {
-				_cubes.emplace_back(letter);
+		for ( code_point_t letter : board ) {
+			if ( letter != '\n' ) {
+				_cubes.emplace_back( letter );
 			}
 		}
 		_size = math::square_root( _cubes.size() );
@@ -163,13 +162,13 @@ int main( int argc_, char** argv_ ) {
 		HFile dictFile( argc_ > 1 ? argv_[1] : "/usr/share/dict/words", HFile::OPEN::READING );
 		HString line;
 		while ( dictFile.read_line( line, HFile::READ::BUFFERED_READS ) >= 0 ) {
-			dictionaryRoot.addSuffix( line.raw() );
+			dictionaryRoot.addSuffix( line );
 			++ wordCount;
 		}
 		dictFile.close();
 		cerr << "[ OK ] Ready (" << wordCount << " words loaded)" << endl;
 	} catch ( HException const& ex ) {
-		cerr << "[FAIL] Reading dictionary failed at line " << wordCount << endl;
+		cerr << "[FAIL] Reading dictionary failed at line " << wordCount << ", with an error:" << ex.what() << endl;
 		return 1;
 	}
 
