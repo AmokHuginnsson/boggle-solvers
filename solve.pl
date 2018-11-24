@@ -3,7 +3,7 @@ exec perl -w -x "${0}" "${@}"
 #!perl
 #line 5
 
-use v5.22;
+use v5.28;
 use feature qw(signatures);
 
 use strict;
@@ -48,7 +48,7 @@ class DictionaryNode {
 		if ( $self->_finished ) {
 			print( $prefix_ . "\n" );
 		}
-		foreach my $char ( keys( $self->_next ) ) {
+		foreach my $char ( keys( $self->_next->%* ) ) {
 			$self->_next->{$char}->print_all( $prefix_ . $char );
 		}
 	}
@@ -75,7 +75,7 @@ class Board {
 		assert( $len * $len == length( $self->_letters ) );
 		$self->_size( $len );
 		foreach my $l ( split( "", $self->_letters ) ) {
-			push( $self->_cubes, Cube->new( $l ) );
+			push( $self->_cubes->@*, Cube->new( $l ) );
 		}
 		my @deltas = ([-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]);
 		foreach my $x ( 0 .. $len - 1 ) {
