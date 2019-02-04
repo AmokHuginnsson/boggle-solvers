@@ -4,6 +4,9 @@
 # Algorithm design and implementation by
 # Marcin Sulikowski (@marcinsulikowski)
 
+# BENCH_INVOKE_CMD:./solve.py dict.txt
+# BENCH_VERSION_CMD:python3 --version | awk '{print $NF}'
+
 import codecs
 import math
 import sys

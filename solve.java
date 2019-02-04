@@ -1,3 +1,9 @@
+/*
+ * BENCH_BUILD_CMD:javac solve.java
+ * BENCH_INVOKE_CMD:java solve ./dict.txt
+ * BENCH_VERSION_CMD:java -version 2>&1 | awk '{print $3;exit}'
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;

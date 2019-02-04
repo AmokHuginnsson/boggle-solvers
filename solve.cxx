@@ -1,3 +1,9 @@
+/*
+ * BENCH_BUILD_CMD:g++ -O3 solve.cxx -lyaal_hcore -lyaal_tools
+ * BENCH_INVOKE_CMD:./a.out ./dict.txt
+ * BENCH_VERSION_CMD:g++ --version | awk '{print $NF;exit}'
+ */
+
 #include <yaal/hcore/harray.hxx>
 #include <yaal/hcore/hmap.hxx>
 #include <yaal/hcore/hhashmap.hxx>
@@ -166,7 +172,7 @@ int main( int argc_, char** argv_ ) {
 			++ wordCount;
 		}
 		dictFile.close();
-		cerr << "[ OK ] Ready (" << wordCount << " words loaded)" << endl;
+		cout << "[ OK ] Ready (" << wordCount << " words loaded)" << endl;
 	} catch ( HException const& ex ) {
 		cerr << "[FAIL] Reading dictionary failed at line " << wordCount << ", with an error:" << ex.what() << endl;
 		return 1;
@@ -178,11 +184,11 @@ int main( int argc_, char** argv_ ) {
 		if ( line.is_empty() && !boardString.is_empty() ) {
 			try {
 				Board board( boardString );
-				cerr << "[ OK ] Solving:\n" << board.print() << endl;
+				cout << "[ OK ] Solving:\n" << board.print() << endl;
 				for ( Board::results_t::value_type const& w : board.solve( &dictionaryRoot ) ) {
 					cout << "(" << w.size() << ") " << w << endl;
 				}
-				cerr << "[ OK ] Solved" << endl;
+				cout << "[ OK ] Solved" << endl;
 			} catch ( yaal::hcore::HException const& ex ) {
 				cerr << "[FAIL] Can't solve board: " << ex.what() << endl;
 			}

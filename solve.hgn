@@ -2,6 +2,11 @@
 exec huginn --rapid-start -E "${0}" "${@}"
 #! huginn
 
+/*
+ * BENCH_INVOKE_CMD:./solve.hgn dict.txt
+ * BENCH_VERSION_CMD:echo '(HEAD)'
+ */
+
 import Algorithms as algo;
 import Mathematics as math;
 import FileSystem as fs;

@@ -2,6 +2,10 @@
  * Credits:
  * Algorithm design and implementation by
  * Marcin Sulikowski (@marcinsulikowski)
+ *
+ * BENCH_BUILD_CMD:g++ -O3 solve.cpp
+ * BENCH_INVOKE_CMD:./a.out ./dict.txt
+ * BENCH_VERSION_CMD:g++ --version | awk '{print $NF;exit}'
  */
 
 #include <iconv.h>
@@ -232,7 +236,7 @@ int main(int argc, char** argv) {
 			++wordCount;
 		}
 		dictFile.close();
-		std::cerr << "[ OK ] Ready (" << wordCount << " words loaded)" << std::endl;
+		std::cout << "[ OK ] Ready (" << wordCount << " words loaded)" << std::endl;
 	} catch (std::exception& ex) {
 		std::cerr << "[FAIL] Reading dictionary failed at line " << wordCount << std::endl;
 		return 1;
@@ -245,11 +249,11 @@ int main(int argc, char** argv) {
 				Converter utf2windows("utf-8", "windows-1250");
 				Converter windows2utf("windows-1250", "utf-8");
 				Board board(utf2windows.convert(boardString));
-				std::cerr << "[ OK ] Solving:\n" << windows2utf.convert(board.print()) << std::endl;
+				std::cout << "[ OK ] Solving:\n" << windows2utf.convert(board.print()) << std::endl;
 				for (auto&& w : board.solve(&dictionaryRoot)) {
 					std::cout << "(" << w.size() << ") " << windows2utf.convert(w) << std::endl;
 				}
-				std::cerr << "[ OK ] Solved" << std::endl;
+				std::cout << "[ OK ] Solved" << std::endl;
 			} catch (std::exception& ex) {
 				std::cerr << "[FAIL] Can't solve board: " << ex.what() << std::endl;
 			}

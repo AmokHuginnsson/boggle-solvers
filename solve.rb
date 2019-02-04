@@ -1,5 +1,7 @@
 #! /bin/sh
 exec ruby -w -x "${0}" "${@}"
+# BENCH_INVOKE_CMD:./solve.rb dict.txt
+# BENCH_VERSION_CMD:ruby --version | awk '{print $2}'
 #!ruby
 
 require "set"
