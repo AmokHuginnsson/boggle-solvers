@@ -1,5 +1,8 @@
 #! /usr/bin/env lua
 
+-- BENCH_INVOKE_CMD:./solve.lua dict.txt
+-- BENCH_VERSION_CMD:lua -v | awk '{print $2}'
+
 function ziter( a, i )
 	i = i + 1
 	local v = a[ i ]

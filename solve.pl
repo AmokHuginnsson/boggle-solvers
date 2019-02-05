@@ -3,6 +3,9 @@ exec perl -w -x "${0}" "${@}"
 #!perl
 #line 5
 
+# BENCH_INVOKE_CMD:./solve.pl dict.txt
+# BENCH_VERSION_CMD:perl -e 'print $^V'
+
 use v5.28;
 use feature qw(signatures);
 

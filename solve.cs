@@ -1,3 +1,8 @@
+/*
+ * BENCH_BUILD_CMD:mono-csc solve.cs
+ * BENCH_INVOKE_CMD:./solve.exe ./dict.txt
+ * BENCH_VERSION_CMD:mono --version | awk '{print $5;exit}'
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;

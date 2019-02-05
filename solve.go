@@ -1,3 +1,8 @@
+/*
+ * BENCH_BUILD_CMD:go build solve.go
+ * BENCH_INVOKE_CMD:./solve ./dict.txt
+ * BENCH_VERSION_CMD:go version | awk '{print $3}'
+ */
 package main
 
 import "fmt"
@@ -41,7 +46,7 @@ func ( node_ *DictionaryNode ) get( char_ byte ) *DictionaryNode {
 
 func ( node_ *DictionaryNode ) print_all( prefix_ string ) {
 	if ( node_._finished ) {
-		print( prefix_ + "\n" )
+		fmt.Printf( prefix_ + "\n" )
 	}
 	for char, tail := range node_._next {
 		tail.print_all( prefix_ + string( char ) )
@@ -150,7 +155,7 @@ func main() {
 	}
 //	dictionaryRoot.print_all( "" )
 
-	print( "[ OK ] Ready\n" )
+	fmt.Printf( "[ OK ] Ready\n" )
 
 	input := bufio.NewReader( os.Stdin )
 	letters := ""
@@ -161,15 +166,15 @@ func main() {
 		}
 		line = strings.TrimSpace( line )
 		if ( ( len( letters ) > 0 ) && ( len( line ) == 0 ) ) {
-			print( "[ OK ] Solving\n" )
+			fmt.Printf( "[ OK ] Solving\n" )
 			board := NewBoard( letters )
 			if ( board != nil ) {
 				for _, word := range board.solve( dictionaryRoot ) {
 					fmt.Printf( "(%d) %s\n", len( word ), word )
 				}
-				print( "[ OK ] Solved\n" )
+				fmt.Printf( "[ OK ] Solved\n" )
 			} else {
-				print( "Bad board definition!\n" )
+				fmt.Printf( "Bad board definition!\n" )
 			}
 			letters = ""
 		} else {

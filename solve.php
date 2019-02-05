@@ -1,6 +1,9 @@
 #! /bin/sh
 #<?php /*
-exec php7.0 "${0}" "${@}"
+exec php "${0}" "${@}"
+
+BENCH_INVOKE_CMD:./solve.php dict.txt
+BENCH_VERSION_CMD:php --version | awk '{print $2;exit}'
 #*/
 
 function array_get( $dict, $key, $default = null ) {

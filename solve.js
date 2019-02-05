@@ -3,6 +3,9 @@
 /*
 exec nodejs --harmony "${0}" "${@}"
 Very ugly hack to spawn nodejs from ${PATH}.
+
+BENCH_INVOKE_CMD:./solve.js dict.txt
+BENCH_VERSION_CMD:nodejs --version
 */
 
 print = console.log
