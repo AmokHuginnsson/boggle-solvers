@@ -21,7 +21,7 @@ All tests runs were performed with tcmalloc preloaded
 | C++        |           1.59 |       657712 | GCC 8.2.0                 |
 | C#         |           5.30 |       983968 | 4.2.1.0                   |
 | Go         |           2.84 |       636828 | go1.10.4                  |
-| [Huginn][1]|          34.55 |      1839276 | (HEAD)                    |
+| [Huginn][1]|          33.01 |      1734512 | (HEAD)                    |
 | Java       |           2.90 |      1265092 | Oracle Java 1.7.0         |
 | JavaScript |           4.42 |       498268 | NodeJS 8.11.4             |
 | Julia ☠    |          11.10 |      3341924 | 0.4.7                     |
