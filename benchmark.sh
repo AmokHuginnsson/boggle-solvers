@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 if [ ${#} -lt 1 ] ; then
 	echo "Specify benchmark subject."
@@ -24,8 +24,10 @@ bench() {
 		if [ "x${benchBuildCmd}" != "x" ] ; then
 			${benchBuildCmd}
 		fi
+		cores=$(nproc)
 		for i in $(seq ${trials}) ; do
-			benchResult=$(echo "" | taskset -c 3 time -f "${timeFormat}" ${benchInvokeCmd} 2>&1 > /dev/null)
+			core=$((${RANDOM} % ${cores}))
+			benchResult=$(echo "" | taskset -c ${core} time -f "${timeFormat}" ${benchInvokeCmd} 2>&1 > /dev/null)
 			echo "${benchResult}"
 		done
 		if [ "x${benchVersionCmd}" != "x" ] ; then
