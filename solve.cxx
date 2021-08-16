@@ -167,7 +167,7 @@ int main( int argc_, char** argv_ ) {
 	try {
 		HFile dictFile( argc_ > 1 ? argv_[1] : "/usr/share/dict/words", HFile::OPEN::READING );
 		HString line;
-		while ( dictFile.read_line( line, HFile::READ::BUFFERED_READS ).good() ) {
+		while ( getline( dictFile, line ).good() ) {
 			dictionaryRoot.addSuffix( line );
 			++ wordCount;
 		}
@@ -180,7 +180,8 @@ int main( int argc_, char** argv_ ) {
 
 	HString line, boardString;
 	HFile in( stdin, HFile::OWNERSHIP::EXTERNAL );
-	while ( in.read_line( line, HFile::READ::UNBUFFERED_READS ).good() ) {
+	in.set_buffered_io( false );
+	while ( getline( in, line ).good() ) {
 		if ( line.is_empty() && !boardString.is_empty() ) {
 			try {
 				Board board( boardString );
